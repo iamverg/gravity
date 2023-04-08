@@ -1,3 +1,6 @@
+:root {
+  --purple: #3a0071;
+}
 html {
   background-color: #f1f5f9;
   font-family: sans-serif;
@@ -28,16 +31,21 @@ h1 {
 }
 
 /* nav styles */
-
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
 .hamburger {
-  padding-right: 20px;
   cursor: pointer;
+  background: transparent;
+  border: 0;
+  height: 32px;
 }
 .hamburger .line {
   display: block;
   width: 40px;
   height: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   background-color: #ff9776;
 }
 
@@ -45,9 +53,12 @@ h1 {
   width: 100%;
   top: 5rem;
   left: 48px;
-  background-color: #ff9776;
-  display: none;
+  opacity: 0;
+  visibility: hidden;
   margin: 0;
+  transition-property: opacity, visibility;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
 
 .nav-links a {
@@ -63,19 +74,47 @@ h1 {
 .nav-links a:hover,
 a:focus {
   background-color: #ff9776;
+  color: var(--purple);
 }
 
 .expanded {
+  opacity: 1;
+  visibility: visible;
   display: unset;
+}
+.hamburger > span {
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
+.hamburger--expanded > span:first-child {
+  transform: rotate(-45deg);
+  translate: 0px 12px 0px;
+}
+.hamburger--expanded > span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger--expanded > span:nth-child(3) {
+  transform: rotate(45deg);
+  translate: 0px -8px 0px;
 }
 
 @media screen and (min-width: 636px) {
+  .nav {
+    justify-content: flex-start;
+    align-items: center;
+  }
   .nav-links {
     margin-left: 5em;
     display: block;
+    opacity: 1;
+    visibility: visible;
     position: static;
     width: auto;
     background: none;
+    flex-grow: 1;
+    transition: none;
   }
 
   .nav-links a {

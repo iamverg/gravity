@@ -19,9 +19,11 @@
   #themeToggle {
     border: 0;
     background: none;
+    height: 30px;
   }
   .sun {
     fill: black;
+    color: gold;
   }
   .moon {
     fill: transparent;
@@ -32,6 +34,11 @@
   }
   :global(.dark) .moon {
     fill: white;
+  }
+  @media screen and (min-width: 636px) {
+    #themeToggle {
+      display: block;
+    }
   }
 </style>
 <script>
